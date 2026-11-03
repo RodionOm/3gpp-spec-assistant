@@ -1,3 +1,5 @@
 python-docx
 sentence-transformers
 numpy
+openai
+python-dotenv
