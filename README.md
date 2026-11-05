@@ -1,4 +1,4 @@
-# 3GPP Spec Assistant
+# ClauseFinder — 3GPP Spec Assistant
 
 Ask a question about 5G NR and get a short answer that cites the exact section of the 3GPP standard it came from. The assistant searches **TS 38.300 V18.11.0** with keyword and semantic search, reranks the candidates, and lets an LLM answer **only** from the sections it found.
 

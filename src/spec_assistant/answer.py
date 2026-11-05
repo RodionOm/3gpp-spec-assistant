@@ -49,6 +49,7 @@ class Assistant:
         return {
             "answer": response.choices[0].message.content.strip(),
             "sources": [(chunk["section"], chunk["title"], score) for score, chunk in results],
+            "chunks": results,
         }
 
 
