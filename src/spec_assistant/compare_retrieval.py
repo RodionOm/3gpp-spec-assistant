@@ -1,4 +1,4 @@
-"""Compare retrieval strategies on the same questions: dense, BM25, hybrid, dense + reranker."""
+"""Compare retrieval strategies on the same questions: dense, BM25, hybrid, and both with a reranker."""
 
 import json
 import re
@@ -41,9 +41,9 @@ def hybrid_ranking(dense, keyword):
     return sorted(scores, key=scores.get, reverse=True)
 
 
-def reranked(question, dense, chunks, reranker):
-    """Re-score the top dense candidates with a cross-encoder that reads question and chunk together."""
-    candidates = dense[:CANDIDATES]
+def reranked(question, ranking, chunks, reranker):
+    """Re-score the top candidates of any ranking with a cross-encoder that reads question and chunk together."""
+    candidates = ranking[:CANDIDATES]
     pairs = [(question, chunks[i]["text"]) for i in candidates]
     scores = reranker.predict(pairs)
     order = np.argsort(-np.array(scores))
@@ -57,18 +57,20 @@ def main():
     reranker = CrossEncoder(RERANK_MODEL)
     bm25 = BM25Okapi([tokenize(c["text"]) for c in chunks])
 
-    methods = ["dense", "bm25", "hybrid", "dense+rerank"]
+    methods = ["dense", "bm25", "hybrid", "dense+rerank", "hybrid+rerank"]
     ranks = {m: [] for m in methods}
     details = []
 
     for q in questions:
         dense = dense_ranking(q["question"], model, embeddings)
         keyword = bm25_ranking(q["question"], bm25)
+        hybrid = hybrid_ranking(dense, keyword)
         rankings = {
             "dense": dense,
             "bm25": keyword,
-            "hybrid": hybrid_ranking(dense, keyword),
+            "hybrid": hybrid,
             "dense+rerank": reranked(q["question"], dense, chunks, reranker),
+            "hybrid+rerank": reranked(q["question"], hybrid, chunks, reranker),
         }
         row = {"question": q["question"], "expected": q["expected"]}
         for m, ranking in rankings.items():
@@ -80,13 +82,13 @@ def main():
 
     n = len(questions)
     print(f"Questions: {n}\n")
-    print(f"{'method':<14}" + "".join(f"hit@{k:<6}" for k in K_VALUES))
+    print(f"{'method':<16}" + "".join(f"hit@{k:<6}" for k in K_VALUES))
     for m in methods:
         cells = []
         for k in K_VALUES:
             hits = sum(1 for r in ranks[m] if r is not None and r <= k)
             cells.append(f"{hits / n:<10.0%}")
-        print(f"{m:<14}" + "".join(cells))
+        print(f"{m:<16}" + "".join(cells))
 
     RESULTS_FILE.write_text(json.dumps(details, indent=2, ensure_ascii=False), encoding="utf-8")
     print(f"\nSaved to: {RESULTS_FILE}")
