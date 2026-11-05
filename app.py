@@ -11,6 +11,7 @@ import streamlit as st
 ROOT = Path(__file__).parent
 sys.path.insert(0, str(ROOT / "src" / "spec_assistant"))
 from answer import Assistant  # noqa: E402
+from setup_data import ensure_index  # noqa: E402
 
 APP_NAME = "ClauseFinder"
 SPEC = "TS 38.300 V18.11.0"
@@ -102,9 +103,15 @@ st.set_page_config(page_title=APP_NAME, layout="wide")
 st.markdown(CSS.replace("HERO_BG", hero_background()), unsafe_allow_html=True)
 
 
-@st.cache_resource(show_spinner="Loading the index and models...")
+@st.cache_resource(show_spinner="First start: building the index, about 2-3 minutes...")
 def get_assistant():
+    ensure_index()
     return Assistant()
+
+
+@st.cache_data(show_spinner=False, max_entries=200)
+def ask(question):
+    return get_assistant().answer(question)
 
 
 def set_question(text):
@@ -148,7 +155,7 @@ question = st.text_input(
 
 if question.strip():
     with st.spinner("Searching the specification..."):
-        result = get_assistant().answer(question)
+        result = ask(question)
 
     st.markdown('<div class="label">Answer</div>', unsafe_allow_html=True)
     st.markdown(f'<div class="answer">{mark_citations(result["answer"])}</div>', unsafe_allow_html=True)
