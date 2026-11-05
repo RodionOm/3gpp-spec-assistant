@@ -1,0 +1,22 @@
+[
+  {"question": "What does a gNB do?", "expected": ["4.1"]},
+  {"question": "Which functions are hosted by the gNB?", "expected": ["4.2"]},
+  {"question": "What is paging used for?", "expected": ["9.2.5"]},
+  {"question": "How does a handover between two gNBs work without the core network?", "expected": ["9.2.3.2.1"]},
+  {"question": "What kinds of mobility exist for a UE in RRC_CONNECTED?", "expected": ["9.2.3.1"]},
+  {"question": "What is the RRC_INACTIVE state?", "expected": ["9.2.2.1"]},
+  {"question": "Which RRC states can a UE be in?", "expected": ["7.2"]},
+  {"question": "Which sublayers make up layer 2 in NR?", "expected": ["6.1"]},
+  {"question": "What are the main functions of the MAC sublayer?", "expected": ["6.2.1"]},
+  {"question": "Which transmission modes does RLC support?", "expected": ["6.3.1"]},
+  {"question": "What does the PDCP sublayer do?", "expected": ["6.4.1"]},
+  {"question": "What is the role of SDAP?", "expected": ["6.5"]},
+  {"question": "Which waveform is used in the NR downlink and uplink?", "expected": ["5.1"]},
+  {"question": "Which events trigger the random access procedure?", "expected": ["9.2.6"]},
+  {"question": "What is the C-RNTI used for?", "expected": ["8.1"]},
+  {"question": "How does the gNB allocate downlink resources to UEs?", "expected": ["10.2"]},
+  {"question": "How does DRX help the UE save power?", "expected": ["11"]},
+  {"question": "How is network slicing supported in the NG-RAN?", "expected": ["16.3.1"]},
+  {"question": "What is Small Data Transmission?", "expected": ["18.0"]},
+  {"question": "Which protocol carries user data on the NG-U interface?", "expected": ["4.3.1.1"]}
+]

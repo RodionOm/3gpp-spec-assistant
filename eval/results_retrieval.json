@@ -1,0 +1,282 @@
+[
+  {
+    "question": "What does a gNB do?",
+    "expected": [
+      "4.1"
+    ],
+    "found": [
+      "16.10.6.5A",
+      "5.3.5.2",
+      "10.5.1",
+      "9.1",
+      "16.10.6.8"
+    ],
+    "rank": null
+  },
+  {
+    "question": "Which functions are hosted by the gNB?",
+    "expected": [
+      "4.2"
+    ],
+    "found": [
+      "16.10.6.5A",
+      "B.4",
+      "4.2",
+      "16.8.2.1",
+      "5.3.5.2"
+    ],
+    "rank": 3
+  },
+  {
+    "question": "What is paging used for?",
+    "expected": [
+      "9.2.5"
+    ],
+    "found": [
+      "9.2.5",
+      "9.2.5",
+      "20.2",
+      "16.7.5",
+      "9.2.5"
+    ],
+    "rank": 1
+  },
+  {
+    "question": "How does a handover between two gNBs work without the core network?",
+    "expected": [
+      "9.2.3.2.1"
+    ],
+    "found": [
+      "16.10.5.3.2",
+      "9.2.3.4.2",
+      "16.10.5.3.3",
+      "16.10.5.3.2",
+      "16.10.5.3.3"
+    ],
+    "rank": null
+  },
+  {
+    "question": "What kinds of mobility exist for a UE in RRC_CONNECTED?",
+    "expected": [
+      "9.2.3.1"
+    ],
+    "found": [
+      "16.14.3.1",
+      "9.2.2.4.2",
+      "16.19.3.1",
+      "16.9.2.6",
+      "9.2.3.1"
+    ],
+    "rank": 5
+  },
+  {
+    "question": "What is the RRC_INACTIVE state?",
+    "expected": [
+      "9.2.2.1"
+    ],
+    "found": [
+      "9.2.2.4.2",
+      "16.10.5.3.5",
+      "9.2.2.2",
+      "9.2.10",
+      "9.2.2.1"
+    ],
+    "rank": 5
+  },
+  {
+    "question": "Which RRC states can a UE be in?",
+    "expected": [
+      "7.2"
+    ],
+    "found": [
+      "16.3.2.2",
+      "16.14.3.1",
+      "16.12.5.4",
+      "7.9",
+      "9.2.2.4.1"
+    ],
+    "rank": null
+  },
+  {
+    "question": "Which sublayers make up layer 2 in NR?",
+    "expected": [
+      "6.1"
+    ],
+    "found": [
+      "6.1",
+      "6.6",
+      "4.4.1",
+      "4.4.2",
+      "16.12.2.1"
+    ],
+    "rank": 1
+  },
+  {
+    "question": "What are the main functions of the MAC sublayer?",
+    "expected": [
+      "6.2.1"
+    ],
+    "found": [
+      "6.2.1",
+      "16.9.2.2",
+      "4.4.1",
+      "6.11.1",
+      "4.4.2"
+    ],
+    "rank": 1
+  },
+  {
+    "question": "Which transmission modes does RLC support?",
+    "expected": [
+      "6.3.1"
+    ],
+    "found": [
+      "6.3.1",
+      "16.9.2.3",
+      "6.3.2",
+      "16.9.1",
+      "5.7.2"
+    ],
+    "rank": 1
+  },
+  {
+    "question": "What does the PDCP sublayer do?",
+    "expected": [
+      "6.4.1"
+    ],
+    "found": [
+      "6.4.1",
+      "16.9.2.4",
+      "6.3.2",
+      "4.4.1",
+      "6.1"
+    ],
+    "rank": 1
+  },
+  {
+    "question": "What is the role of SDAP?",
+    "expected": [
+      "6.5"
+    ],
+    "found": [
+      "6.5",
+      "16.9.2.5",
+      "6.1",
+      "6.1",
+      "6.4.1"
+    ],
+    "rank": 1
+  },
+  {
+    "question": "Which waveform is used in the NR downlink and uplink?",
+    "expected": [
+      "5.1"
+    ],
+    "found": [
+      "5.1",
+      "5.1",
+      "5.4.2",
+      "3.2",
+      "5.3.2"
+    ],
+    "rank": 1
+  },
+  {
+    "question": "Which events trigger the random access procedure?",
+    "expected": [
+      "9.2.6"
+    ],
+    "found": [
+      "9.2.6",
+      "9.2.6",
+      "9.2.6",
+      "9.2.6",
+      "9.2.6"
+    ],
+    "rank": 1
+  },
+  {
+    "question": "What is the C-RNTI used for?",
+    "expected": [
+      "8.1"
+    ],
+    "found": [
+      "16.3.2.1",
+      "Annex F",
+      "8.1",
+      "15.4.1",
+      "Annex C"
+    ],
+    "rank": 3
+  },
+  {
+    "question": "How does the gNB allocate downlink resources to UEs?",
+    "expected": [
+      "10.2"
+    ],
+    "found": [
+      "5.3.5.2",
+      "10.5.1",
+      "10.3",
+      "9.2.2.4.1",
+      "10.5.2"
+    ],
+    "rank": null
+  },
+  {
+    "question": "How does DRX help the UE save power?",
+    "expected": [
+      "11"
+    ],
+    "found": [
+      "11",
+      "11",
+      "11",
+      "11",
+      "16.15.3"
+    ],
+    "rank": 1
+  },
+  {
+    "question": "How is network slicing supported in the NG-RAN?",
+    "expected": [
+      "16.3.1"
+    ],
+    "found": [
+      "16.3.4.1",
+      "16.3.1",
+      "16.3.1",
+      "16.3.1",
+      "16.3.1"
+    ],
+    "rank": 2
+  },
+  {
+    "question": "What is Small Data Transmission?",
+    "expected": [
+      "18.0"
+    ],
+    "found": [
+      "18.0",
+      "16.9.1",
+      "5.5",
+      "16.10.6.5A",
+      "16.8.1"
+    ],
+    "rank": 1
+  },
+  {
+    "question": "Which protocol carries user data on the NG-U interface?",
+    "expected": [
+      "4.3.1.1"
+    ],
+    "found": [
+      "4.3.1.1",
+      "7.2",
+      "1",
+      "4.3.1.2",
+      "4.1"
+    ],
+    "rank": 1
+  }
+]
