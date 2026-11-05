@@ -1,53 +1,24 @@
 """Compare retrieval strategies on the same questions: dense, BM25, hybrid, and both with a reranker."""
 
 import json
-import re
 from pathlib import Path
 
-import numpy as np
-from rank_bm25 import BM25Okapi
 from sentence_transformers import CrossEncoder, SentenceTransformer
 
 from evaluate_retrieval import QUESTIONS_FILE, first_hit_rank
-from retrieve import MODEL_NAME, load_index
+from retrieve import (
+    MODEL_NAME,
+    RERANK_MODEL,
+    bm25_ranking,
+    build_bm25,
+    dense_ranking,
+    hybrid_ranking,
+    load_index,
+    reranked,
+)
 
 RESULTS_FILE = Path("eval/results_compare.json")
-RERANK_MODEL = "cross-encoder/ms-marco-MiniLM-L-6-v2"
 K_VALUES = [1, 3, 5]
-CANDIDATES = 20   # how many chunks the reranker re-scores
-RRF_K = 60        # standard constant for reciprocal rank fusion
-
-
-def tokenize(text):
-    """Lowercase words, keeping 3GPP terms like rrc_inactive and 5gc together."""
-    return re.findall(r"[a-z0-9_]+", text.lower())
-
-
-def dense_ranking(question, model, embeddings):
-    q = model.encode([question], normalize_embeddings=True)[0]
-    return list(np.argsort(-(embeddings @ q)))
-
-
-def bm25_ranking(question, bm25):
-    return list(np.argsort(-bm25.get_scores(tokenize(question))))
-
-
-def hybrid_ranking(dense, keyword):
-    """Reciprocal rank fusion: a chunk ranked high by either method moves up."""
-    scores = {}
-    for ranking in (dense, keyword):
-        for rank, idx in enumerate(ranking, start=1):
-            scores[idx] = scores.get(idx, 0) + 1 / (RRF_K + rank)
-    return sorted(scores, key=scores.get, reverse=True)
-
-
-def reranked(question, ranking, chunks, reranker):
-    """Re-score the top candidates of any ranking with a cross-encoder that reads question and chunk together."""
-    candidates = ranking[:CANDIDATES]
-    pairs = [(question, chunks[i]["text"]) for i in candidates]
-    scores = reranker.predict(pairs)
-    order = np.argsort(-np.array(scores))
-    return [candidates[i] for i in order]
 
 
 def main():
@@ -55,7 +26,7 @@ def main():
     chunks, embeddings = load_index()
     model = SentenceTransformer(MODEL_NAME)
     reranker = CrossEncoder(RERANK_MODEL)
-    bm25 = BM25Okapi([tokenize(c["text"]) for c in chunks])
+    bm25 = build_bm25(chunks)
 
     methods = ["dense", "bm25", "hybrid", "dense+rerank", "hybrid+rerank"]
     ranks = {m: [] for m in methods}
