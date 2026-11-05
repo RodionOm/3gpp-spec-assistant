@@ -1,5 +1,7 @@
 # ClauseFinder — 3GPP Spec Assistant
 
+**Live demo:** https://clausefinder.streamlit.app (first visit may take a minute to wake up)
+
 Ask a question about 5G NR and get a short answer that cites the exact section of the 3GPP standard it came from. The assistant searches **TS 38.300 V18.11.0** with keyword and semantic search, reranks the candidates, and lets an LLM answer **only** from the sections it found.
 
 ![Python](https://img.shields.io/badge/Python-3.13-3776AB) ![RAG](https://img.shields.io/badge/RAG-hybrid%20%2B%20rerank-555) ![Embeddings](https://img.shields.io/badge/embeddings-all--MiniLM--L6--v2-555) ![LLM](https://img.shields.io/badge/LLM-gpt--4.1--mini-555) ![UI](https://img.shields.io/badge/UI-Streamlit-FF4B4B)
